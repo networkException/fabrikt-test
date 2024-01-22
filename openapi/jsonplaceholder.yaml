@@ -1,0 +1,44 @@
+openapi: 3.0.3
+servers:
+  - url: https://jsonplaceholder.typicode.com
+info:
+  title: Jsonplaceholder
+  version: 1.0.0
+paths:
+  /todos/{id}:
+    get:
+      operationId: getTodo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoResponse'
+
+components:
+  schemas:
+    TodoResponse:
+      type: object
+      additionalProperties: true
+      example:
+        userId: 1
+        id: 1
+        title: "foo"
+        completed: false
+      required:
+        - id
+        - userId
+      properties:
+        id:
+          type: number
+        userId:
+          type: number
